@@ -26,9 +26,22 @@ public class Q2_AddTwoNumbers
     ListNode currL2 = l2;
     
     int carry = 0;
-    while ( currL1 != null && currL2 != null )
+    while ( currL1 != null || currL2 != null || carry > 0 )
     {
-      int sum = currL1.val + currL2.val + carry;
+      int sum = carry;
+      
+      if ( currL1 != null )
+      {
+        sum += currL1.val; 
+        currL1 = currL1.next;
+      }
+      
+      if ( currL2 != null ) 
+      {
+        sum += currL2.val; 
+        currL2 = currL2.next;
+      }
+      
       int currDigit = sum % 10;
       carry = sum / 10;
       
@@ -43,37 +56,6 @@ public class Q2_AddTwoNumbers
         currNode = currNode.next;
       }
       
-      currL1 = currL1.next;
-      currL2 = currL2.next;
-    }
-    
-    while ( currL1 != null )
-    {
-      int sum = currL1.val + carry;
-      int currDigit = sum % 10;
-      carry = sum / 10;
-      
-      currNode.next = new ListNode(currDigit);
-      currNode = currNode.next;
-      
-      currL1 = currL1.next;
-    }
-    
-    while ( currL2 != null )
-    {
-      int sum = currL2.val + carry;
-      int currDigit = sum % 10;
-      carry = sum / 10;
-      
-      currNode.next = new ListNode(currDigit);
-      currNode = currNode.next;
-      
-      currL2 = currL2.next;
-    }
-    
-    if ( carry > 0 )
-    {
-      currNode.next = new ListNode(carry);
     }
     
     return resultHead;
