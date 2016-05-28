@@ -21,6 +21,17 @@ public class Q7_ReverseIntegerTest
     assertEquals(0, testSubject.reverse(0));
     assertEquals(321, testSubject.reverse(123));
     assertEquals(-321, testSubject.reverse(-123));
+    assertEquals(1, testSubject.reverse(100));
     assertEquals(0, testSubject.reverse(1000000003));
+  }
+  
+  @Test
+  public void testReverse_strVersion()
+  {
+    assertEquals(0, testSubject.reverseStr(0));
+    assertEquals(321, testSubject.reverseStr(123));
+    assertEquals(-321, testSubject.reverseStr(-123));
+    assertEquals(1, testSubject.reverseStr(100));
+    assertEquals(0, testSubject.reverseStr(1000000003));
   }
 }
