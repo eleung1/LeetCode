@@ -47,21 +47,15 @@ public class Q8_StringToInteger
     int startIndex = 0;
     char[] arr = str.toCharArray();
     if ( arr[0] == '-' || arr[0] == '+') startIndex +=1;
+    int sign = arr[0] == '-' ? -1 : 1;
     for ( int i = startIndex; i < arr.length; i ++ )
     {
       int currInt = Character.getNumericValue(arr[i]);
       if ( currInt < 0 || currInt > 9 ) break;
       
-      if ( arr[0] == '-' )
-      {
-        result = (result * 10) - Character.getNumericValue(arr[i]);
-        if ( result < Integer.MIN_VALUE) return Integer.MIN_VALUE;
-      }
-      else
-      {
-        result = (result * 10) + Character.getNumericValue(arr[i]);
-        if ( result > Integer.MAX_VALUE ) return Integer.MAX_VALUE;
-      }
+      result = (result * 10) + (currInt * sign);
+      if ( result < Integer.MIN_VALUE ) return Integer.MIN_VALUE;
+      if ( result > Integer.MAX_VALUE ) return Integer.MAX_VALUE;
     }
 
     return (int) result;
