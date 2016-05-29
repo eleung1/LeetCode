@@ -16,9 +16,16 @@ public class Q7_ReverseIntegerTest
   }
   
   @Test
+  public void testSingle()
+  {
+    assertEquals(1, testSubject.reverse(1));
+  }
+  
+  @Test
   public void testReverse()
   {
     assertEquals(0, testSubject.reverse(0));
+    assertEquals(1, testSubject.reverse(1));
     assertEquals(321, testSubject.reverse(123));
     assertEquals(-321, testSubject.reverse(-123));
     assertEquals(1, testSubject.reverse(100));
