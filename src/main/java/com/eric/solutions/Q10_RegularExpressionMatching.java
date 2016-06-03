@@ -1,7 +1,5 @@
 package com.eric.solutions;
 
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * '.' Matches any single character.
@@ -54,6 +52,8 @@ public class Q10_RegularExpressionMatching
     
     if (s.isEmpty())
     {
+      if ( p.length() == 1 ) return false;
+      
       if ( p.length() == 2 ) 
       {
         if ( p.charAt(1) == '*' )
@@ -62,8 +62,14 @@ public class Q10_RegularExpressionMatching
         }
         else
         {
-          return isMatch(s, p.substring(2));
+          //return isMatch(s, p.substring(2));
+          return false;
         }
+      }
+      
+      if (p.length() > 2)
+      {
+        if ( p.charAt(1) == '*' ) return isMatch(s, p.substring(2));
       }
       
       if ( p.length() >= 2 && p.charAt(1) != '*' || p.charAt(p.length()-1) != '*') return false;
@@ -90,7 +96,7 @@ public class Q10_RegularExpressionMatching
         {
           if ( s.charAt(i) == p.charAt(0) || p.charAt(0) == '.' )
           {
-            if (isMatch(s.substring(i+1), p) )
+            if (isMatch(s.substring(i+1), p.substring(2)) )
             {
               return true;
             }
@@ -116,39 +122,5 @@ public class Q10_RegularExpressionMatching
       }
 
     }
-  }
-  
-  public List<CharacterRule> constructRuleFromPattern(String p)
-  {
-    List<CharacterRule> rules = new LinkedList<CharacterRule>();
-    
-    char[] arr = p.toCharArray();
-    
-    CharacterRule currRule = new CharacterRule();
-    currRule.c = arr[0];
-    currRule.count = 1;
-    
-    for ( int i = 1; i < arr.length; i ++ )
-    {
-      if ( arr[i] == currRule.c)
-      {
-        currRule.count+=1;
-      }
-      else if ( arr[i] == '*' )
-      {
-        
-      }
-    }
-    
-    
-    return rules;
-  }
-  
-  class CharacterRule
-  {
-    char c;
-    int count;
-    boolean exact;
-    boolean moreThan;
   }
 }

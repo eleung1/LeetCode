@@ -28,6 +28,7 @@ public class Q10_RegularExpressionMatchingTest
   {
     
     assertFalse(testSubject.isMatch("aa","a"));
+    
     assertFalse(testSubject.isMatch("aaa","aa"));
     
     assertTrue(testSubject.isMatch("aa", "a."));
@@ -53,6 +54,11 @@ public class Q10_RegularExpressionMatchingTest
     
     assertFalse(testSubject.isMatch("baaabaacaacaacbca", "b*c*c*.*.*bba*b*"));
     
+    assertFalse(testSubject.isMatch("baaabaacaacaacbca", "b*c*c*.*.*bba*b*"));
+    
+    assertFalse(testSubject.isMatch("a", ".*.."));
+   
+    assertTrue(testSubject.isMatch("", "c*c*"));
     
   }
 }
