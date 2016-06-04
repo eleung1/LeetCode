@@ -54,12 +54,8 @@ public class Q15_ThreeSum
         int k = Arrays.binarySearch(nums, j+1, nums.length, 0 - nums[i] - nums[j] );
         
         if ( k >= 0 )
-        {          
-          List<Integer> triplet = new LinkedList<Integer>(); 
-          triplet.add(nums[i]);
-          triplet.add(nums[j]);
-          triplet.add(nums[k]);
-          result.add(triplet);
+        { 
+          result.add(Arrays.asList(nums[i], nums[j], nums[k]));
         }
         
       }
