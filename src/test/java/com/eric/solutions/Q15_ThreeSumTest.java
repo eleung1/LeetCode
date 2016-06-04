@@ -11,6 +11,7 @@ public class Q15_ThreeSumTest
 {
   private Q15_ThreeSum testSubject;
   
+  private int[] nums0;
   private int[] nums;
   private int[] nums2;
   private int[] lotsOfNums;
@@ -19,6 +20,8 @@ public class Q15_ThreeSumTest
   public void setup()
   {
     testSubject = new Q15_ThreeSum();
+    
+    nums0 = new int[]{-1,0,1,0};
     
     nums = new int[]{-1, 0, 1, 2, -1, -4, -1, 4, 0};
     
@@ -73,6 +76,17 @@ public class Q15_ThreeSumTest
     assertArrayEquals(new Integer[]{-2, -2, 4}, list5.toArray(new Integer[0]));
     assertArrayEquals(new Integer[]{-2, 0, 2}, list6.toArray(new Integer[0]));
     
+  }
+  
+  @Test
+  public void testThreeSum_givenProperArray3_returnProperTriplets()
+  {
+    List<List<Integer>> rc = testSubject.threeSum(nums0);
+    assertEquals(1, rc.size());
+    
+    List<Integer> list1 = rc.get(0);
+    
+    assertArrayEquals(new Integer[]{-1,0,1}, list1.toArray(new Integer[0]));
   }
   
   @Test
