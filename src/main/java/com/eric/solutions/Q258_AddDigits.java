@@ -24,29 +24,8 @@ public class Q258_AddDigits
 {
   public int addDigits(int num)
   {
-    if ( num < 10 ) return num;
-    if ( num % 9 == 0 ) return 9;
-    
-    // extract individual digits
-    List<Integer> digits = new LinkedList<Integer>();
-    
-    while ( num != 0 )
-    {
-      digits.add(num % 10);
-      num /= 10;
-    }
-    
-    // add them together
-    int sum = 0;
-    for ( int i : digits )
-    {
-      sum += i;
-    }
-    
-    // see how many times does 9 goes into the sum
-    int nineFactor = sum / 9;
-    
-    return sum - (9*nineFactor);
+    if ( num < 10 ) return num;    
+    return num % 9 == 0 ? 9 : num % 9;
   }
   
   public int addDigitsNaive(int num) 
