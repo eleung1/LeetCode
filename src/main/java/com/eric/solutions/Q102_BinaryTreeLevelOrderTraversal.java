@@ -5,12 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.eric.solutions.Q102_BinaryTreeLevelOrderTraversal.TreeNode;
-
 /**
- * Question 107: Binary Tree Level Order Traversal II
+ * Question 102: Binary Tree Level Order Traversal
  * 
- * Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+ * Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
  * 
  * For example:
  * Given binary tree [3,9,20,null,null,15,7],
@@ -19,23 +17,30 @@ import com.eric.solutions.Q102_BinaryTreeLevelOrderTraversal.TreeNode;
  *  9  20
  *    /  \
  *   15   7
- * return its bottom-up level order traversal as:
+ * return its level order traversal as:
  * [
- *  [15,7],
+ *  [3],
  *  [9,20],
- *  [3]
+ *  [15,7]
  * ]
+ * 
  * 
  * @author Eric Leung
  *
  */
-public class Q107_BinaryTreeLevelOrderTraversal2
+public class Q102_BinaryTreeLevelOrderTraversal
 {
-  public List<List<Integer>> levelOrderBottom(TreeNode root) 
+  /**
+   * BFS solution
+   * 
+   * @param root
+   * @return
+   */
+  public List<List<Integer>> levelOrder(TreeNode root) 
   {
     if ( root == null ) return new ArrayList<List<Integer>>();
-    
-    LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+   
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
     Queue<TreeNode> toExplore = new LinkedList<TreeNode>();
     toExplore.add(root);
     
@@ -52,7 +57,7 @@ public class Q107_BinaryTreeLevelOrderTraversal2
         if ( curr.left != null) toExplore.add(curr.left);
         if ( curr.right != null) toExplore.add(curr.right);
       }
-      result.addFirst(currLevelVals);
+      result.add(currLevelVals);
     }
     
     return result;
@@ -67,5 +72,4 @@ public class Q107_BinaryTreeLevelOrderTraversal2
        TreeNode right;
        TreeNode(int x) { val = x; }
    }
-   
 }
