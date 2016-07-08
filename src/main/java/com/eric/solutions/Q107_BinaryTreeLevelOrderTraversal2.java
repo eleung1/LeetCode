@@ -1,7 +1,9 @@
 package com.eric.solutions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Question 107: Binary Tree Level Order Traversal II
@@ -29,28 +31,37 @@ public class Q107_BinaryTreeLevelOrderTraversal2
 {
   public List<List<Integer>> levelOrderBottom(TreeNode root) 
   {
-    if ( root == null ) return null;
+    if ( root == null ) return new LinkedList<List<Integer>>();
     
-    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+    List<Integer> currLevelVals = new ArrayList<Integer>();
     
-    if ( root.left == null || root.right == null )
+    // Root level
+    currLevelVals.add(root.val);
+    result.addFirst(currLevelVals);
+    
+    // Generate list of next level nodes
+    Queue<TreeNode> nextLevelNodes = new LinkedList<TreeNode>();
+    if ( root.left != null ) nextLevelNodes.add(root.left);
+    if ( root.right != null) nextLevelNodes.add(root.right);
+    
+    while ( !nextLevelNodes.isEmpty() ) 
     {
-      List<Integer> currLevel = new ArrayList<Integer>();
-      currLevel.add(root.val);
-      result.add(currLevel);
+      // Set list of curr level node to be the previous next, and empty the list of next level nodes
+      Queue<TreeNode> currLevelNodes = nextLevelNodes;
+      nextLevelNodes = new LinkedList<TreeNode>();
+      currLevelVals = new ArrayList<Integer>();
+      for ( TreeNode node: currLevelNodes )
+      {
+        currLevelVals.add(node.val);
+        
+        // populate next level nodes again.  
+        if ( node.left != null ) nextLevelNodes.add(node.left);
+        if ( node.right != null ) nextLevelNodes.add(node.right);
+      }
+      result.addFirst(currLevelVals);
     }
-    else
-    {
-      /*
-      List<List<Integer>> leftChildLevel = levelOrderBottom(root.left);
-      List<List<Integer>> rightChildLevel = levelOrderBottom(root.right);
-      
-      List<Integer> currLevel = new ArrayList<Integer>();
-      currLevel.add(root.val);
-      
-      result.add(currLevel);
-      */
-    }
+    
     
     return result;
   }
